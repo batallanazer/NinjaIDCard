@@ -5,7 +5,13 @@ void main() {
     home: NinjaCard(),
   ));
 }
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
+  @override
+  State<NinjaCard> createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+  int currentLevel = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +64,7 @@ class NinjaCard extends StatelessWidget {
             ),
             SizedBox(height: 10.0,),
             Text(
-              '8',
+              '$currentLevel',
               style: TextStyle(
                   color: Colors.amberAccent,
                   letterSpacing: 2.0,
@@ -86,6 +92,15 @@ class NinjaCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add,),
+        backgroundColor: Colors.grey,
+        onPressed: (){
+          setState(() {
+            currentLevel +=1;
+          });
+        },
       ),
     );
   }
